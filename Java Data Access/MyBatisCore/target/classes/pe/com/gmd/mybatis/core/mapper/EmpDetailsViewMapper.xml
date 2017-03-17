@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.com.gmd.mybatis.core.mapper.EmpDetailsViewMapper">
+  <resultMap id="BaseResultMap" type="pe.com.gmd.mybatis.core.entity.EmpDetailsView">
+    <result column="EMPLOYEE_ID" jdbcType="DECIMAL" property="employeeId" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="MANAGER_ID" jdbcType="DECIMAL" property="managerId" />
+    <result column="DEPARTMENT_ID" jdbcType="DECIMAL" property="departmentId" />
+    <result column="LOCATION_ID" jdbcType="DECIMAL" property="locationId" />
+    <result column="COUNTRY_ID" jdbcType="CHAR" property="countryId" />
+    <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
+    <result column="LAST_NAME" jdbcType="VARCHAR" property="lastName" />
+    <result column="SALARY" jdbcType="DECIMAL" property="salary" />
+    <result column="COMMISSION_PCT" jdbcType="DECIMAL" property="commissionPct" />
+    <result column="DEPARTMENT_NAME" jdbcType="VARCHAR" property="departmentName" />
+    <result column="JOB_TITLE" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="STATE_PROVINCE" jdbcType="VARCHAR" property="stateProvince" />
+    <result column="COUNTRY_NAME" jdbcType="VARCHAR" property="countryName" />
+    <result column="REGION_NAME" jdbcType="VARCHAR" property="regionName" />
+  </resultMap>
+  <insert id="insert" parameterType="pe.com.gmd.mybatis.core.entity.EmpDetailsView">
+    insert into HR.EMP_DETAILS_VIEW (EMPLOYEE_ID, JOB_ID, MANAGER_ID, 
+      DEPARTMENT_ID, LOCATION_ID, COUNTRY_ID, 
+      FIRST_NAME, LAST_NAME, SALARY, 
+      COMMISSION_PCT, DEPARTMENT_NAME, JOB_TITLE, 
+      CITY, STATE_PROVINCE, COUNTRY_NAME, 
+      REGION_NAME)
+    values (#{employeeId,jdbcType=DECIMAL}, #{jobId,jdbcType=VARCHAR}, #{managerId,jdbcType=DECIMAL}, 
+      #{departmentId,jdbcType=DECIMAL}, #{locationId,jdbcType=DECIMAL}, #{countryId,jdbcType=CHAR}, 
+      #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{salary,jdbcType=DECIMAL}, 
+      #{commissionPct,jdbcType=DECIMAL}, #{departmentName,jdbcType=VARCHAR}, #{jobTitle,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{stateProvince,jdbcType=VARCHAR}, #{countryName,jdbcType=VARCHAR}, 
+      #{regionName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.com.gmd.mybatis.core.entity.EmpDetailsView">
+    insert into HR.EMP_DETAILS_VIEW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        EMPLOYEE_ID,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="managerId != null">
+        MANAGER_ID,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+      <if test="locationId != null">
+        LOCATION_ID,
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID,
+      </if>
+      <if test="firstName != null">
+        FIRST_NAME,
+      </if>
+      <if test="lastName != null">
+        LAST_NAME,
+      </if>
+      <if test="salary != null">
+        SALARY,
+      </if>
+      <if test="commissionPct != null">
+        COMMISSION_PCT,
+      </if>
+      <if test="departmentName != null">
+        DEPARTMENT_NAME,
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="stateProvince != null">
+        STATE_PROVINCE,
+      </if>
+      <if test="countryName != null">
+        COUNTRY_NAME,
+      </if>
+      <if test="regionName != null">
+        REGION_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=DECIMAL},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=DECIMAL},
+      </if>
+      <if test="locationId != null">
+        #{locationId,jdbcType=DECIMAL},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=CHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionPct != null">
+        #{commissionPct,jdbcType=DECIMAL},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="stateProvince != null">
+        #{stateProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null">
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

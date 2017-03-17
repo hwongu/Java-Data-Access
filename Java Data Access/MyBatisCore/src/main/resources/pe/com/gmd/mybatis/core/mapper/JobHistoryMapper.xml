@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.com.gmd.mybatis.core.mapper.JobHistoryMapper">
+  <resultMap id="BaseResultMap" type="pe.com.gmd.mybatis.core.entity.JobHistory">
+    <id column="EMPLOYEE_ID" jdbcType="DECIMAL" property="employeeId" />
+    <id column="START_DATE" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="END_DATE" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="DEPARTMENT_ID" jdbcType="DECIMAL" property="departmentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMPLOYEE_ID, START_DATE, END_DATE, JOB_ID, DEPARTMENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from HR.JOB_HISTORY
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+      and START_DATE = #{startDate,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from HR.JOB_HISTORY
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+      and START_DATE = #{startDate,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="pe.com.gmd.mybatis.core.entity.JobHistory">
+    insert into HR.JOB_HISTORY (EMPLOYEE_ID, START_DATE, END_DATE, 
+      JOB_ID, DEPARTMENT_ID)
+    values (#{employeeId,jdbcType=DECIMAL}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{jobId,jdbcType=VARCHAR}, #{departmentId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.com.gmd.mybatis.core.entity.JobHistory">
+    insert into HR.JOB_HISTORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        EMPLOYEE_ID,
+      </if>
+      <if test="startDate != null">
+        START_DATE,
+      </if>
+      <if test="endDate != null">
+        END_DATE,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.com.gmd.mybatis.core.entity.JobHistory">
+    update HR.JOB_HISTORY
+    <set>
+      <if test="endDate != null">
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+      and START_DATE = #{startDate,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.com.gmd.mybatis.core.entity.JobHistory">
+    update HR.JOB_HISTORY
+    set END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      JOB_ID = #{jobId,jdbcType=VARCHAR},
+      DEPARTMENT_ID = #{departmentId,jdbcType=DECIMAL}
+    where EMPLOYEE_ID = #{employeeId,jdbcType=DECIMAL}
+      and START_DATE = #{startDate,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

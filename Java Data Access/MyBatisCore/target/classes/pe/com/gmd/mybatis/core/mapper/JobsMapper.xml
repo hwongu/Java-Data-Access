@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.com.gmd.mybatis.core.mapper.JobsMapper">
+  <resultMap id="BaseResultMap" type="pe.com.gmd.mybatis.core.entity.Jobs">
+    <id column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="JOB_TITLE" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="MIN_SALARY" jdbcType="DECIMAL" property="minSalary" />
+    <result column="MAX_SALARY" jdbcType="DECIMAL" property="maxSalary" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from HR.JOBS
+    where JOB_ID = #{jobId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HR.JOBS
+    where JOB_ID = #{jobId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="pe.com.gmd.mybatis.core.entity.Jobs">
+    insert into HR.JOBS (JOB_ID, JOB_TITLE, MIN_SALARY, 
+      MAX_SALARY)
+    values (#{jobId,jdbcType=VARCHAR}, #{jobTitle,jdbcType=VARCHAR}, #{minSalary,jdbcType=DECIMAL}, 
+      #{maxSalary,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.com.gmd.mybatis.core.entity.Jobs">
+    insert into HR.JOBS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE,
+      </if>
+      <if test="minSalary != null">
+        MIN_SALARY,
+      </if>
+      <if test="maxSalary != null">
+        MAX_SALARY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="minSalary != null">
+        #{minSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="maxSalary != null">
+        #{maxSalary,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.com.gmd.mybatis.core.entity.Jobs">
+    update HR.JOBS
+    <set>
+      <if test="jobTitle != null">
+        JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="minSalary != null">
+        MIN_SALARY = #{minSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="maxSalary != null">
+        MAX_SALARY = #{maxSalary,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where JOB_ID = #{jobId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.com.gmd.mybatis.core.entity.Jobs">
+    update HR.JOBS
+    set JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      MIN_SALARY = #{minSalary,jdbcType=DECIMAL},
+      MAX_SALARY = #{maxSalary,jdbcType=DECIMAL}
+    where JOB_ID = #{jobId,jdbcType=VARCHAR}
+  </update>
+</mapper>
